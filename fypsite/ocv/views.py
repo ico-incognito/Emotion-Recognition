@@ -114,23 +114,24 @@ def opencv(request):
 	#Detect faces
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-	#Faces not detected
+	#Check if face os detected
 	if not len(faces) > 0:
 		anger = disgust = fear = happy = sad = surprise = neutral = np.float64(0)
 	
 	else:
-	#Detect face rectangles
-		for (x,y,w,h) in faces:
-			continue
+		main_face = np.zeros((4))
+		for face in faces:
+			if face[2] * face[3] > main_face[2] * main_face[3]:
+				main_face = face
 
 		#Capture face
-		face = gray[y-0 : y+h+0, x-0 : x+w+0]
+		main_face = gray[main_face[1] : main_face[1]+main_face[2], main_face[0] : main_face[0]+main_face[3]]
 
 		#Resize for input to CNN
-		face = cv2.resize(face, (48, 48))
+		main_face = cv2.resize(main_face, (48, 48))
 
 		#Pass image to CNN
-		anger, disgust, fear, happy, sad, surprise, neutral = display_result(x_tensor, face, init, saver, Z5, mygraph)
+		anger, disgust, fear, happy, sad, surprise, neutral = display_result(x_tensor, main_face, init, saver, Z5, mygraph)
 
 		#Make variables JSON serializable ie float32 to float64
 		anger = anger.astype(np.float64)
