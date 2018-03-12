@@ -16,6 +16,7 @@ op = 7
 #Load haar cascade file
 face_cascade = cv2.CascadeClassifier('ocv/haarcascade_frontalface_default.xml')
 
+#Function to be called once to create tf graph
 def load_model():
 	#Create graph
 	mygraph = tf.Graph()
