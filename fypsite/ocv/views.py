@@ -119,6 +119,7 @@ def opencv(request):
 		anger = disgust = fear = happy = sad = surprise = neutral = np.float64(0)
 	
 	else:
+		#Select the face closest to the webcam
 		main_face = np.zeros((4))
 		for face in faces:
 			if face[2] * face[3] > main_face[2] * main_face[3]:
