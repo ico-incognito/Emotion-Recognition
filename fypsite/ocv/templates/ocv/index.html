@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>Index</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "ocv/css/materialize.css" %}">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+	<div class="col s6 m6">
+		<div class="row">
+			<h3 class="teal-text">Weebcam</h3>
+			<video autoplay="false" id="videoElement" width="360" height="270"></video>
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" id="snap">Start</button>
+		</div>
+		<div class="row">
+			<canvas id="canvas" width="192" height="144"></canvas>
+		</div>
+	</div>
+	<div class="col s6 m6">
+		<div class="row">
+			<p>Anger</p>
+			<div id="chartContainer0" style="height: 100px; width: 100%;"></div>
+			<p>Disgust</p>
+			<div id="chartContainer1" style="height: 100px; width: 100%;"></div>
+			<p>Fear</p>
+			<div id="chartContainer2" style="height: 100px; width: 100%;"></div>
+			<p>Happy</p>
+			<div id="chartContainer3" style="height: 100px; width: 100%;"></div>
+			<p>Sad</p>
+			<div id="chartContainer4" style="height: 100px; width: 100%;"></div>
+			<p>Surprise</p>
+			<div id="chartContainer5" style="height: 100px; width: 100%;"></div>
+			<p>Neutral</p>
+			<div id="chartContainer6" style="height: 100px; width: 100%;"></div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="{% static "ocv/js/webcam.js" %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>
