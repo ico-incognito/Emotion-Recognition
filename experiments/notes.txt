@@ -1,0 +1,247 @@
+FILE INFO:
+
+test1 = Reading csv with tf (Dropped)
+test2 = Reading csv with np (Dropped)
+test3 = Modified test1 to read csv without tf
+test4 = Reading csv with dictreader (Dropped)
+
+proto1 = Multi layer feed forward model
+proto2 = Added l2 regularization to proto1
+proto3 = Added l2 regularization to proto1 in a different way
+proto4 = Added dropout regularization to proto1
+proto5 = Changed no of nodes and added extra layer to proto2
+proto6 = Changed architecture to cnn
+proto7 = Changed code for fully connected and added saver
+proto8 = Further experimentation on proto7 
+
+fetch1 = Restoring trained variables
+
+appl1 = Code for main application
+appl2 = Increased speed of appl1
+appl3 = Broken appl2 into functions
+appl4 = Application code
+
+check1 = Checking for incorrectly classified images manually
+
+
+OBSERVATIONS:
+
+proto1
+- For 3 layers and no of nodes = 35, 27, 16
+	Train accuracy: approx 19%
+	Test accuracy: approx 18%
+
+- For 4 layers and no of nodes = 35, 27, 16, 10
+	Train accuracy: approx 20%
+	Test accuracy: approx 20%
+
+- For 4 layers and no of nodes = 100, 60, 35, 20
+	Train accuracy: approx 22%
+	Test accuracy: approx 22%
+
+- For 4 layers and no of nodes = 500, 350, 200, 90
+	Train accuracy: approx 91%
+	Test accuracy: approx 28%
+
+- For 4 layers and no of nodes = 100, 100, 100, 100
+	Train accuracy: approx 23%
+	Test accuracy: approx 22%
+
+- For 4 layers and no of nodes = 500, 500, 500, 500
+	Train accuracy: approx 89%
+	Test accuracy: approx 22%
+
+- For GradientDescentOptimizer
+	Train accuracy: approx 87%
+	Test accuracy: approx 22%
+
+- For learning_rate = 0.01
+	Train and Test accuracy: approx 19%
+
+- For 1200 epochs and learning_rate = 0.00001 on complete dataset
+	Train accuracy: approx 98%
+	Test accuracy: approx: 20%
+
+- Largely overfitting the dataset
+
+
+proto2
+- For 1200 epochs and lambd = 0.01 on complete dataset
+	Train accuracy: approx 79%
+	Test accuracy: approx 40%
+
+- For lambd = 0.5
+	Train accuracy: approx 35%, 44%
+	Test accuracy: approx 34%, 32%
+
+- For 500 epochs and lambd = 0.5
+	Train accuracy: approx 24%
+	Test accuracy: approx 23%
+
+- For lambd = 0.7
+	Train accuracy: approx 25%, 28%
+	Test accuracy: approx 23%, 25%
+
+- For 1200 epochs and lambd = 0.5 on complete dataset
+	Train accuracy: approx 25%
+	Test accuracy: approx 24%
+	Cost remained same after 350 epochs
+
+- For lambd = 0.5 on complete dataset
+	Train accuracy: approx 25%
+	Test accuracy: approx 24%
+
+- For lambd = 0.1
+	Train accuracy: approx 77%, 72%
+	Test accuracy: approx 34%, 30%
+
+- For lambd = 0.2
+	Train accuracy: approx 77%, 60%
+	Test accuracy: approx 33%, 32%
+
+- For lambd = 0.3
+	Train accuracy: approx 58%, 60%
+	Test accuracy: approx 33%, 30%
+
+- For lambd = 0.09
+	Train accuracy: approx 82%, 82%
+	Test accuracy: approx 33%, 30%
+
+- For lambd = 0.05
+	Train accuracy: approx 91%, 84%
+	Test accuracy: approx 32%, 31%
+
+- For 1200 epochs and lambd = 0.1 on complete dataset
+	Train accuracy: approx 39%
+	Test accuracy: approx 38%
+
+- For 1200 epochs and lambd = 0.05 on complete dataset
+	Train accuracy: approx 44%
+	Test accuracy: approx 39%
+	Cost moves back and forth after 200 epochs
+
+- For 200 epochs and lambd = 0.05 on complete dataset
+	Train accuracy: approx 46%
+	Test accuracy: approx 40%
+
+- For 500 epochs, learning rate = 0.00001 and lambd = 0.05 on complete dataset
+	Train accuracy: approx 44%
+	Test accuracy: approx 39%
+	Cost moves back and forth after 200 epochs
+
+- Even after tuning the parameters for quite some time, the test accuracy does not seem to exceed 40%
+
+
+proto3
+- Similar observations as proto2
+
+
+proto4
+- For keep_prob = 0.5
+	Train accuracy: approx 24%, 24%
+	Test accuracy: approx 22%, 24%
+
+- For 500 epochs and keep_prob = 0.5
+	Train accuracy: approx 24%
+	Test accuracy: approx 23%
+
+- For 500 epochs and keep_prob = 0.85
+	Train accuracy: approx 27%
+	Test accuracy: approx 23%
+
+- For 500 epochs and keep_prob = 0.4
+	Train accuracy: approx 24%
+	Test accuracy: approx 23%
+
+- The network seems to have approximately the same accuracy for all probabilities
+
+
+proto5
+- No improvement over proto2
+
+
+proto6
+- For keep_prob = 0.5
+	Train accuracy: approx 98%
+	Test accuracy: approx 42%
+
+- For keep_prob = 0.7
+	Train accuracy: approx 99%
+	Test accuracy: approx 41%
+
+- For keep_prob = 0.2
+	Train accuracy: approx 96%
+	Test accuracy: approx 39%
+
+- For keep_prob = 0.3
+	Train accuracy: approx 98%
+	Test accuracy: approx 46%
+
+- For keep_prob = 0.4
+	Train accuracy: approx 98%
+	Test accuracy: approx 43%
+
+- For keep_prob = 0.3 on complete dataset
+	Train accuracy: approx 99%
+	Test accuracy: approx 58%
+
+- For keep_prob = 0.3 and added Local Response Normalization for layer 1 on complete dataset
+	Train accuracy: approx 99%
+	Test accuracy: approx 61.67%
+	Adding LRN in one layer increased the training time by almost double
+
+
+proto7
+- Similar observations as proto6
+
+
+proto8
+- Changed the train-test distribution from 75-25 to 90-10 on complete dataset
+	Train accuracy: approx 99%, 99%
+	Test accuracy: approx 61.99%, 62.41%
+
+- For 1024 nodes in the fully connected layer
+	Train accuracy: approx 90%
+	Test accuracy: approx 47%
+
+- For 2048 nodes in the fully connected layer
+	Train accuracy: approx 94%
+	Test accuracy: approx 47%
+
+- For 1024 nodes in the fully connected layer on complete dataset
+	Train accuracy: approx 98%, 83%
+	Test accuracy: approx 62.75%, 63%
+
+
+model1
+- 61.77
+
+model2
+- 61.55
+
+model3 (Overwritten)
+- 61.10
+
+model3
+- 61.62
+
+model4
+- 62.41
+
+model5 1024 nodes
+- 62.75
+
+model6 no lrn
+- 62.77
+
+model7
+- 61.88
+
+model8 1024 nodes
+- 61.41
+
+model9 1024 nodes no lrn
+- 61.13
+
+model10 1024 nodes and lrn
+- 63
