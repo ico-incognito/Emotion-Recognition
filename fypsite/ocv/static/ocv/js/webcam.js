@@ -228,7 +228,7 @@ document.getElementById("snap").addEventListener("click", function() {
 					updateChart(chart3, dps3, data.happy);
 					updateChart(chart4, dps4, data.sad);
 					updateChart(chart5, dps5, data.surprise * 1.5);
-					updateChart(chart6, dps6, data.neutral * 0.8);
+					updateChart(chart6, dps6, data.neutral * 0.6);
 
 					//Increment the common x axis
 					xVal += 0.5;
