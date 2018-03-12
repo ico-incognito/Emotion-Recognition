@@ -19,8 +19,7 @@ fetch1 = Restoring trained variables
 appl1 = Code for main application
 appl2 = Increased speed of appl1
 appl3 = Broken appl2 into functions
-appl4 = Modified appl3 to remove redundancy
-appl5 = Modified appl4 to work in realtime with OpenCV
+appl4 = Final application code
 
 ocv = OpenCV module for realtime
 
