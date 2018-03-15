@@ -1,3 +1,16 @@
+DATASET:
+
+About FER2013 training data
+
+0 -> Anger = 4486
+1 -> Disgust = 491
+2 -> Fear = 4625
+3 -> Happy = 8094
+4 -> Sad = 5424
+5 -> Surprise = 3587
+6 -> Neutral = 5591
+Total = 32298
+
 FILE INFO:
 
 test1 = Reading csv with tf (Dropped)
@@ -10,7 +23,7 @@ proto2 = Added l2 regularization to proto1
 proto3 = Added l2 regularization to proto1 in a different way
 proto4 = Added dropout regularization to proto1
 proto5 = Changed no of nodes and added extra layer to proto2
-proto6 = Changed architecture to CNN
+proto6 = Changed architecture to cnn
 proto7 = Changed code for fully connected and added saver
 proto8 = Further experimentation on proto7 
 
@@ -19,9 +32,7 @@ fetch1 = Restoring trained variables
 appl1 = Code for main application
 appl2 = Increased speed of appl1
 appl3 = Broken appl2 into functions
-appl4 = Final application code
-
-ocv = OpenCV module for realtime
+appl4 = Application code
 
 check1 = Checking for incorrectly classified images manually
 
@@ -211,44 +222,48 @@ proto8
 	Test accuracy: approx 47%
 
 - For 1024 nodes in the fully connected layer on complete dataset
-	Train accuracy: approx 98%, 83%
+	Train accuracy: approx 98%, 93%
 	Test accuracy: approx 62.75%, 63%
-	
-	
-- For 1024 nodes in the fully connected layer and removed last maxpool layer on complete dataset
-	Train accuracy: approx 83%
-	Test accuracy: approx 63%
+
+- For SAME padding in first conv2d and maxpool and 2048 nodes in fully connected layer on complete dataset
+	Train accuracy: approx 98%
+	Test accuracy: approx 62.55%
+
+- For SAME padding in first conv2d and maxpool and 2048 nodes in two fully connected layers
+	Train accuracy: approx 96%
+	Test accuracy: approx 48%
 
 
-model1 3072 nodes, lrn
+
+model1
 - 61.77
 
-model2 3072, lrn
+model2
 - 61.55
 
-model3 3072, lrn(Overwritten)
+model3 (Overwritten)
 - 61.10
 
-model3 3072, lrn
+model3
 - 61.62
 
-model4 3072, lrn
+model4
 - 62.41
 
-model5 1024 nodes, lrn
+model5 1024 nodes
 - 62.75
 
-model6 3072 nodes, no lrn
+model6 no lrn
 - 62.77
 
-model7 3072 nodes, lrn
+model7
 - 61.88
 
-model8 1024 nodes, lrn
+model8 1024 nodes
 - 61.41
 
-model9 1024 nodes, no lrn
+model9 1024 nodes no lrn
 - 61.13
 
-model10 1024 nodes, lrn
+model10 1024 nodes and lrn
 - 63
