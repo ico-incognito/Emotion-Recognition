@@ -1,7 +1,6 @@
 DATASET:
 
 About FER2013 training data
-
 0 -> Anger = 4486
 1 -> Disgust = 491
 2 -> Fear = 4625
@@ -10,6 +9,7 @@ About FER2013 training data
 5 -> Surprise = 3587
 6 -> Neutral = 5591
 Total = 32298
+
 
 FILE INFO:
 
