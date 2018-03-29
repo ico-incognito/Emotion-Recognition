@@ -28,6 +28,7 @@ test1 = Reading csv with tf (Dropped)
 test2 = Reading csv with np (Dropped)
 test3 = Modified test1 to read csv without tf
 test4 = Reading csv with dictreader (Dropped)
+test5 = Reading csv with pandas
 
 proto1 = Multi layer feed forward model
 proto2 = Added l2 regularization to proto1
