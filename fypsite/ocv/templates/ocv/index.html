@@ -3,45 +3,72 @@
 	<title>Index</title>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "ocv/css/materialize.css" %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="container">
 	<div class="row">
-	<div class="col s6 m6">
-		<div class="row">
-			<h3 class="teal-text">Weebcam</h3>
-			<video autoplay="false" id="videoElement" width="360" height="270"></video>
+		<div class="col s6 m6">
+			<div class="row">
+				<h3 class="teal-text">Weebcam</h3>
+				<video id="showvideo" width="360" height="270">
+					<source src="{% static "ocv/media/video.mp4" %}" type="video/mp4">
+					<source src="{% static "ocv/media/video.mp4" %}" type="video/ogg">
+				</video>
+				<video autoplay="false" id="videoElement" width="360" height="270" hidden></video>
+			</div>
+			<div class="row">
+				<button class="waves-effect waves-light btn" id="snap">Start</button>
+				<a class="modal-trigger" href="#modal1"><i class="waves-effect waves-light teal-text medium material-icons">info</i></a>
+				<div id="modal1" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h5>Instructions</h5>
+						<ol>
+							<li>This system is designed as a simulation of an E-Learning portal.</li>
+							<li>On X axis: Time<br>On Y axis: Probability of the emotion (highest 1 i.e. 100%)</li>
+							<li>Try to keep the face at the center of the webcam frame.</li>
+							<li>When multiple faces are detected emotion recognition is only performed on the face closest to the webcam.</li>
+							<li>When a face is not detected the Y value at that time instant for all graphs fall to 0.</li>
+							<li>For the emotions to be recognized correctly on the detected face, proper lighting is needed.</li>
+							<li>The system is designed to run at 2 frames per second on a below average system, however using a free server like heroku introduces a bit of lag.</li>
+							<li>Try to remove your glasses before testing the system as the dataset used for training does not have people wearing glasses. Also the dataset does not have people with too much facial hair.</li>
+							<li>Code for resetting has not been written so the page needs to be refresed for testing again.</li>
+						</ol>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<br><br>
+				<canvas id="canvas" width="192" height="144"></canvas>
+			</div>
 		</div>
-		<div class="row">
-			<button class="waves-effect waves-light btn" id="snap">Start</button>
-		</div>
-		<div class="row">
-			<canvas id="canvas" width="192" height="144"></canvas>
+		<div class="col s6 m6">
+			<div class="row">
+				<p>Anger</p>
+				<div id="chartContainer0" style="height: 100px; width: 100%;"></div>
+				<p>Disgust</p>
+				<div id="chartContainer1" style="height: 100px; width: 100%;"></div>
+				<p>Fear</p>
+				<div id="chartContainer2" style="height: 100px; width: 100%;"></div>
+				<p>Happy</p>
+				<div id="chartContainer3" style="height: 100px; width: 100%;"></div>
+				<p>Sad</p>
+				<div id="chartContainer4" style="height: 100px; width: 100%;"></div>
+				<p>Surprise</p>
+				<div id="chartContainer5" style="height: 100px; width: 100%;"></div>
+				<p>Neutral</p>
+				<div id="chartContainer6" style="height: 100px; width: 100%;"></div>
+			</div>
 		</div>
 	</div>
-	<div class="col s6 m6">
-		<div class="row">
-			<p>Anger</p>
-			<div id="chartContainer0" style="height: 100px; width: 100%;"></div>
-			<p>Disgust</p>
-			<div id="chartContainer1" style="height: 100px; width: 100%;"></div>
-			<p>Fear</p>
-			<div id="chartContainer2" style="height: 100px; width: 100%;"></div>
-			<p>Happy</p>
-			<div id="chartContainer3" style="height: 100px; width: 100%;"></div>
-			<p>Sad</p>
-			<div id="chartContainer4" style="height: 100px; width: 100%;"></div>
-			<p>Surprise</p>
-			<div id="chartContainer5" style="height: 100px; width: 100%;"></div>
-			<p>Neutral</p>
-			<div id="chartContainer6" style="height: 100px; width: 100%;"></div>
-		</div>
-	</div>
-</div>
 </div>
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script src="{% static "ocv/js/webcam.js" %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static "ocv/js/canvasjs.min.js" %}"></script>
+<script src="{% static "ocv/js/webcam.js" %}"></script>
+<script src="{% static "ocv/js/materialize.js" %}"></script>
 </body>
 </html>
