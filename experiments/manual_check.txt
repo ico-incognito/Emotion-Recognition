@@ -1,0 +1,24 @@
+Incorrect Predictions:
+
+1. Proper faces-
+	No clear solutions
+
+2. Improper lighting
+	No clear solutions
+
+3. Objects blocking the face-
+	In certain cases the face is detected.
+	There is not much clarity as to what are these specific cases.
+
+4. Face covered by hand-
+	OpenCV does not detect a face when the hand is placed on certain parts of the face (forehead, nose, one eye or both eyes).
+
+5. Faces not at the center of the image- 
+	OpenCV creates face rectangle with the face as the center.
+	So the chances of such image being fed into the CNN is very low.
+
+6. Slant faces-
+	Such face is not detected by OpenCV hence it won't be fed into the CNN and shouldn't cause a problem.
+
+7. Side faces- 
+	Such face is not detected by OpenCV hence it won't be fed into the CNN and shouldn't cause a problem.
