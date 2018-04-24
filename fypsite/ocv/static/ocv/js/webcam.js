@@ -1,9 +1,15 @@
 var video = document.querySelector("#videoElement");
 var canvas = document.getElementById('canvas');
+var showvideo = document.getElementById('showvideo');
 var context = canvas.getContext('2d');
 var count = 0;
 
-//Data points
+//Modal for instructions
+$(document).ready(function(){
+	$('.modal').modal();
+});
+
+//Data points for various emotions
 var dps = [];
 var dps0 = [];
 var dps1 = [];
@@ -177,19 +183,14 @@ var chart6 = new CanvasJS.Chart("chartContainer6", {
 });
 
 //Handle webcam 
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-if (navigator.getUserMedia) {       
-	navigator.getUserMedia({video: true}, handleVideo, videoError);
-}
-
-function handleVideo(stream) {
-	video.src = window.URL.createObjectURL(stream);
-}
-
-function videoError(e) {
-	//Error
-}
+navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    })
+    .catch(function(err) {
+        console.log("An error occured! " + err);
+    });
 
 //Update charts
 var updateChart = function (chart, dps, emotion) {
@@ -197,13 +198,17 @@ var updateChart = function (chart, dps, emotion) {
 			x: xVal,
 			y: emotion
 		});
-	if (dps.length > dataLength) {
+	/*if (dps.length > dataLength) {
 		dps.shift();
-	}
+	}*/
 	chart.render();
 };
 
 document.getElementById("snap").addEventListener("click", function() {
+
+	//Play the video
+	showvideo.play()
+
 	//Execute every half second
 	var interval = setInterval(function(){
 		//Stopping condition
@@ -237,7 +242,7 @@ document.getElementById("snap").addEventListener("click", function() {
 			//Draw image on canvas
 			context.drawImage(video, 0, 0, 192, 144);
 
-			//Get pixel values form canvas
+			//Get pixel values from canvas
 			var frame1 = context.getImageData(0, 0, 192, 144).data;
 			
 			//Uint8ClampedArray to array
