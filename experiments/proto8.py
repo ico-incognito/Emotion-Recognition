@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 
 #Control parameters
@@ -16,46 +17,21 @@ op = 7
 filename1 = "fer2013/train_private.csv"
 filename2 = "fer2013/public_test.csv"
 
-#Read train set
-x_train = []
-y_train = []
+#Read dataset
+def load_dataset(filename, m):
+	dataset = pd.read_csv(filename)
 
-with open(filename1) as inf:
-	#Skip header
-	next(inf)
-	for line in inf:
-		emotion, str_pixels, usage = line.strip().split(",")
-		x1 = np.fromstring(str_pixels, sep = ' ', dtype = int)
-		x_train = np.append(x_train, x1)
-		y_train = np.append(y_train, emotion)
+	#Convert labels to one hot
+	y_set = pd.get_dummies(dataset.iloc[:, 0])
 
-y_train = y_train.astype(int)
+	x_set = pd.DataFrame(dataset.pixels.str.split(' ', 2304).tolist())
+	x_set = x_set.astype(float)
+	x_set = x_set.values.reshape(m, ip_h, ip_w, 1)
+	y_set = y_set.values.reshape(m, op)
+	return x_set, y_set
 
-x_train = np.reshape(x_train, newshape = (m_train, ip_h, ip_w, 1))
-y_train = np.reshape(y_train, newshape = (m_train, 1))
-
-#Convert labels to one hot
-y_train = (np.arange((y_train.max()) + 1) == y_train).astype(int)
-
-
-#Read test set
-x_test = []
-y_test = []
-
-with open(filename2) as inf:
-	next(inf)
-	for line in inf:
-		emotion, str_pixels, usage = line.strip().split(",")
-		x1 = np.fromstring(str_pixels, sep = ' ', dtype = int)
-		x_test = np.append(x_test, x1)
-		y_test = np.append(y_test, emotion)
-
-y_test = y_test.astype(int)
-
-x_test = np.reshape(x_test, newshape = (m_test, ip_h, ip_w, 1))
-y_test = np.reshape(y_test, newshape = (m_test, 1))
-
-y_test = (np.arange((y_test.max()) + 1) == y_test).astype(int)
+x_train, y_train = load_dataset(filename1, m_train)
+x_test, y_test = load_dataset(filename2, m_test)
 
 
 #Normalize
@@ -77,6 +53,7 @@ b4 = tf.get_variable("b4", [1, fc], initializer = tf.zeros_initializer())
 W5 = tf.get_variable("W5", [fc, op], initializer = tf.contrib.layers.xavier_initializer())
 b5 = tf.get_variable("b5", [1, op], initializer = tf.zeros_initializer())
 
+
 #Perform convolution, activation and pooling
 Z1 = tf.nn.conv2d(x, W1, strides = [1, 1, 1, 1], padding = 'VALID')
 A1 = tf.nn.relu(Z1)
@@ -92,7 +69,6 @@ P2 = tf.nn.max_pool(A2, ksize = [1, 3, 3, 1], strides = [1, 2, 2, 1], padding = 
 
 Z3 = tf.nn.conv2d(P2, W3, strides = [1, 1, 1, 1], padding = 'VALID')
 A3 = tf.nn.relu(Z3)
-P3 = tf.nn.max_pool(A2, ksize = [1, 3, 3, 1], strides = [1, 2, 2, 1], padding = 'VALID')
 
 #Regularization
 P3 = tf.nn.dropout(A3, keep_prob)
@@ -139,12 +115,11 @@ with tf.Session() as sess:
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 	#Display accuracy
-	#print("Train Accuracy:", accuracy.eval({x: x_train, y: y_train, keep_prob: 1.0}))
-	#print("Test Accuracy:", accuracy.eval({x: x_test, y: y_test, keep_prob: 1.0}))
+	'''print("Train Accuracy:", accuracy.eval({x: x_train, y: y_train, keep_prob: 1.0}))
+	print("Test Accuracy:", accuracy.eval({x: x_test, y: y_test, keep_prob: 1.0}))'''
 	print((tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES)))
-	#saver.save(sess, 'model11/fyp11.ckpt')
+	#saver.save(sess, 'model12/fyp12.ckpt')
 
-	
 	num_minibatches = int(m_train/minibatch_size)
 	train_accuracy = 0
 	start = 0
@@ -168,4 +143,3 @@ with tf.Session() as sess:
 		start += minibatch_size
 		test_accuracy = test_accuracy + accuracy.eval({x: minibatch_X, y: minibatch_Y, keep_prob: 1.0})
 	print("Test Accuracy:", test_accuracy/num_minibatches)
-	
