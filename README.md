@@ -10,6 +10,6 @@ Screenshots of the prototype:
 
 <img src="screenshots/image1.JPG"/>
 
-<img src="screenshots/image2.JPG" width="800px" height="300px" />
+<img src="screenshots/image2.JPG"/>
 
-<img src="screenshots/image3.JPG" width="800px" height="300px" />
+<img src="screenshots/image3.JPG"/>
