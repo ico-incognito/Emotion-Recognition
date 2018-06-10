@@ -8,8 +8,13 @@ Read notes.txt for information about the files<br><br>
 
 Screenshots of the prototype:
 
+Screenshot 1:
 <img src="screenshots/image1.JPG"/>
 
+Screenshot 2:
+
 <img src="screenshots/image2.JPG"/>
+
+Screenshot 3:
 
 <img src="screenshots/image3.JPG"/>
