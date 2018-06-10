@@ -7,8 +7,9 @@ Read notes.txt for information about the files<br><br>
 <b>fypsite/</b> - The final django project
 
 Screenshots of the prototype:
-<img src="screenshots/image1.jpg" width="400px" height="300px" />
 
-<img src="screenshots/image2.jpg" width="400px" height="300px" />
+<img src="screenshots/image1.JPG" width="400px" height="300px" />
 
-<img src="screenshots/image3.jpg" width="400px" height="300px" />
+<img src="screenshots/image2.JPG" width="400px" height="300px" />
+
+<img src="screenshots/image3.JPG" width="400px" height="300px" />
