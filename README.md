@@ -6,7 +6,8 @@ The CNN is able to achieve an accuracy of 63%.
 Read notes.txt for information about the files<br><br>
 <b>fypsite/</b> - The final django project
 
-Screenshots of the prototype:
+
+<b>Screenshots of the prototype:</b>
 
 Screenshot 1:
 <img src="screenshots/image1.JPG"/>
