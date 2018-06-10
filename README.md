@@ -8,7 +8,6 @@ Read notes.txt for information about the files
 <b>fypsite/</b> - The final django project
 
 <br>
-<br>
 
 <b>Screenshots of the prototype:</b>
 
