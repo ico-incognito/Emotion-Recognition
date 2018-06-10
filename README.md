@@ -7,7 +7,10 @@ Read notes.txt for information about the files
 
 <b>fypsite/</b> - The final django project
 
-##<b>Screenshots of the prototype:</b>
+<br>
+<br>
+
+<b>Screenshots of the prototype:</b>
 
 Screenshot 1:
 <img src="screenshots/image1.JPG"/>
