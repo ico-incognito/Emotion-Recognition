@@ -3,7 +3,8 @@ A system that uses Convolutional Neural Network to recognize human facial expres
 The CNN is able to achieve an accuracy of 63%.
 
 <b>experiments/</b> - Pieces of code used to create the final system<br>
-Read notes.txt for information about the files<br><br>
+Read notes.txt for information about the files
+
 <b>fypsite/</b> - The final django project
 
 
